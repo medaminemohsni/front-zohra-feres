@@ -1,0 +1,88 @@
+
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" >
+      <mat-icon (click)="isExpanded = !isExpanded">
+        menu
+      </mat-icon>
+    </a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" >
+        <a class="navbar-brand navbarstyle" href="#"> 
+          <img src="../../../../../../assets/images_courzelo_classroom/logoclass.jpg" class="img-fluid logo_trainer rounded"
+        alt="courzelo_logo" />
+        </a>
+        </li>
+  
+      <li class="nav-item active" >
+        <a class="navbar-brand navbarstyle" *ngIf="navShow"(click)="navigateTo('classworktrainee')"> Class content</a>
+        </li>
+  
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('fluxtrainee')">Feed</a>
+      </li>
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('Quizmanagementtrainee')" >Assessments</a>
+      </li>
+  
+      <li class="nav-item" >
+        <a class=" navbarstyle"*ngIf="navShow" (click)="navigateTo('attendeestrainee')" >Students</a>
+      </li>
+  
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('gradestrainee')" >Grades Center</a>
+      </li>
+
+
+
+
+
+
+
+  
+  
+    </ul>
+  </nav>
+
+  <mat-sidenav-container class="example-container mat-typography" autosize>
+
+    <mat-sidenav #sidenav="matSidenav">
+      <mat-nav-list>
+<br/>
+        <mat-list-item  routerLink="coursestrainer">
+          <mat-icon matListIcon class="icon-logo">school</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div >
+       
+
+        
+      </div>
+      
+        <mat-list-item  routerLink="archivedcoursestrainer">
+          <mat-icon matListIcon class="icon-logo">archive</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Archived Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="cal">
+          <mat-icon matListIcon class="icon-logo">calendar_today</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Calendar</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="meet">
+          <mat-icon matListIcon class="icon-logo">meeting_room</mat-icon>
+          <h4 matLine *ngIf="isExpanded">meet</h4>
+        </mat-list-item>
+     
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+    <br>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+

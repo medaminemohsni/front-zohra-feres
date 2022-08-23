@@ -1,0 +1,41 @@
+<div class="draganddrop" >
+  <div cdkDropList class="example-list1" (cdkDropListDropped)="drop($event)">
+    <div class="example-box"  *ngFor="let j of phases" cdkDrag  >
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <mat-accordion>
+        <mat-expansion-panel class="matTab" [expanded]="step === 1" (opened)="setStep(0)">
+          <mat-expansion-panel-header style="height: 122px;">
+            <mat-panel-title>
+              <div>
+                {{j.title}}
+              </div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <div>
+                <button mat-button [matMenuTriggerFor]="menu"  >
+                  <mat-icon class="peticon">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="AddphaseDialog(j.idPhase)">Edit phase content</button>
+                  <button mat-menu-item  (click)="deletePhase(j.idPhase)">Delete phase</button>
+                </mat-menu>
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{j.postContent}}
+          <div *ngIf="imageisnull(j.typefile)">
+            <img class="img-fluid" [src]="j.typefile"  alt=".">
+          </div>
+          <div *ngIf="videoisnull(j.typefile)">
+            <video controls width="500">
+              <source [src]="j.typefile">
+            </video>
+          </div>
+          <div *ngIf="pdfisnull(j.typefile)">
+            <app-pdfviewer [path]="j.typefile"></app-pdfviewer>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container-fluid classContent">
+  <!-- Content here -->
+  <div class="row">
+    <div class="column sections">
+      Sections
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let i of sections">{{i.title}}</li>
+      </ul>
+    </div>
+    <div class="column mainContent ">
+      <select class="form-select sections2" aria-label="Default select example">
+        <option selected>All Sections</option>
+        <option *ngFor="let i of sections" [value]="i.title" >{{i.title}}</option>
+      </select>
+
+<!--      add button-->
+      <button mat-raised-button class="main-btn" [matMenuTriggerFor]="menu">
+        <mat-icon class="plus">add</mat-icon>
+        <span class="add-text">Create</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="AddtextDialog()" mat-menu-item>
+          <mat-icon>done_outline</mat-icon>Course section
+        </button>
+        <button (click)=" AddsectionresourcesDialog()" mat-menu-item>
+          <mat-icon>help_outline</mat-icon>Add resources
+        </button>
+        <button  mat-menu-item>
+          <mat-icon>help_outline</mat-icon>Assessment
+        </button>
+      </mat-menu>
+<!--      content-->
+      <div class="draganddrop" >
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let i of sections" cdkDrag  >
+            <div class="example-custom-placeholder" *cdkDragPlaceholder>
+            </div>
+            <mat-accordion>
+              <mat-expansion-panel class="matTab" [expanded]="step === 1" (opened)="setStep(0)" >
+                <mat-expansion-panel-header style="height: 122px;">
+                  <mat-panel-title style="float: left;">
+                    <div>
+                      {{i.title}}
+                    </div>
+                  </mat-panel-title>
+                  <mat-panel-description style="float: right;">
+                    <!--                        {{i.postContent}}-->
+                    <button mat-button [matMenuTriggerFor]="menu"  >
+                      <mat-icon class="peticon">more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="UpdatetextDialog()">Edit title section</button>
+                      <button mat-menu-item (click)="deleteSection(i.idSection)" >Delete section</button>
+                    </mat-menu>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <button mat-raised-button (click)="AddphaseDialog(i.idSection)" [disabled]="test" class="main-btn add-btn">
+                  <mat-icon class="plus">add</mat-icon>
+                  <span class="add-text">Add resources</span>
+                </button>
+                <app-phase [idSection]="i.idSection"> </app-phase>
+                <mat-action-row>
+                  <button mat-button color="primary" [disabled]="test" (click)="nextStep()">
+                    Close
+                  </button>
+                </mat-action-row>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

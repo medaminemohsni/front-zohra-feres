@@ -1,0 +1,117 @@
+<!--nav bar-->
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" >
+    <mat-icon (click)="sidenav.toggle()">
+      menu
+    </mat-icon>
+  </a>
+  <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item active" >
+      <a class="navbar-brand navbarstyle" href="#" *ngIf="!navShow">
+        <img src="../../../../../../assets/images_courzelo_classroom/logoclass.jpg" class="img-fluid logo_trainer rounded"
+             alt="courzelo_logo" />
+      </a>
+    </li>
+
+    <li class="nav-item active" >
+      <a class="navbar-brand navbarstyle" *ngIf="navShow" (click)="navigateTo('')">{{formation.coursename}}</a>
+    </li>
+
+
+    <li class="nav-item active" >
+      <a class="navbar-brand navbarstyle" *ngIf="navShow"(click)="navigateTo('classworktrainer')"> Class content</a>
+    </li>
+
+    <li class="nav-item active" >
+      <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('fluxtrainer')">Feed</a>
+    </li>
+    <li class="nav-item active" >
+      <a class=" navbarstyle" *ngIf="navShow"(click)="navigateTo('Quizmanagement')" >Assessments</a>
+    </li>
+
+    <li class="nav-item" >
+      <a class=" navbarstyle"*ngIf="navShow" (click)="navigateTo('attendeestrainer')" >Students</a>
+    </li>
+
+    <li class="nav-item active" >
+      <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('gradestrainer')" >Grades Center</a>
+    </li>
+
+    <li class="nav-item active" >
+      <button class=" navbarstyle"
+              mat-mini-fab  *ngIf="addShow && !paramShow"
+              color="basic"
+              class="plus settingcss"  >
+        <a (click)="AddcoursesDialog()">
+          <mat-icon class="plus">add</mat-icon>
+        </a>
+      </button>
+    </li>
+
+    <li class="nav-item active" >
+      <a class=" navbarstyle" *ngIf="navShow" >
+        <button *ngIf="!addShow && paramShow" mat-mini-fab color="basic" class="plus settingcss" aria-label="Example icon button with a plus one icon" mat-button [matMenuTriggerFor]="menu"><a ><mat-icon class="plus">settings</mat-icon></a></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item   (click)="AddJobDialog()">Edit course information</button>
+          <button mat-menu-item  (click)="deleteFormation()" >Delete course</button>
+
+        </mat-menu>
+      </a>
+    </li>
+
+    <li class="nav-item active" >
+      <a class=" navbarstyle" *ngIf="navShow" >
+        <button *ngIf="!addShow && paramShow" mat-mini-fab color="basic" class="plus settingcss" aria-label="Example icon button with a plus one icon" mat-button [matMenuTriggerFor]="menu"><a ><mat-icon class="plus">account_circle</mat-icon></a></button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="/">Core</a>
+          <a mat-menu-item routerLink="/profile">My Profile</a>
+          <a mat-menu-item routerLink="mylearning">My Learning</a>
+          <a mat-menu-item routerLink="skillsSpace">Progress</a>
+          <a mat-menu-item routerLink="accueil">Courzelo Classroom</a>
+          <a mat-menu-item >Logout</a>
+        </mat-menu>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!--side bar-->
+<mat-sidenav-container class="example-container mat-typography" autosize>
+  <mat-sidenav #sidenav="matSidenav">
+    <mat-nav-list>
+      <br/>
+      <mat-list-item  routerLink="coursestrainer">
+        <mat-icon matListIcon class="icon-logo">school</mat-icon>
+        <h4 matLine *ngIf="isExpanded">Courses</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item  routerLink="archivedcoursestrainer">
+        <mat-icon matListIcon class="icon-logo">archive</mat-icon>
+        <h4 matLine *ngIf="isExpanded">Archived Courses</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="cal2">
+        <mat-icon matListIcon class="icon-logo">calendar_today</mat-icon>
+        <h4 matLine *ngIf="isExpanded">Calendar</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="meet">
+        <mat-icon matListIcon class="icon-logo">meeting_room</mat-icon>
+        <h4 matLine *ngIf="isExpanded">meet</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+        <mat-list-item routerLink="stat">
+          <mat-icon matListIcon class="icon-logo"><i class="fas fa-signal"></i></mat-icon>
+          <h4 matLine *ngIf="isExpanded">statistics</h4>
+        </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <br>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

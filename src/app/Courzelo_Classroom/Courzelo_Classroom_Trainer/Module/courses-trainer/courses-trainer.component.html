@@ -1,0 +1,57 @@
+
+<!--    <div class="form-group">-->
+<!--      <form>-->
+<!--        <label for="search">Search</label>-->
+<!--        <input  requiredtype="text" [(ngModel)]="search_name" name="search_name" id="" class="form-control"  area-describedby="helpId" placeholder="search ..">-->
+<!--        <span class="caret"></span>-->
+<!--      </form>-->
+<!--    </div>-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <section id="course-part" class="pt-50 pb-50">
+      <div class="container">
+        <div class="row" style="margin-bottom: -20px">
+          <div class="col-lg-6">
+            <div class="section-title pb-45">
+              <h2 style="font-size: 30px">Courses</h2>
+            </div>
+
+            <div class="form-group col-xs-6">
+              <label class="control-label">
+                <code>.inner-addon.<i>right</i>-addon</code>
+              </label>
+              <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="text" class="search-hover" name="" placeholder="search here..."
+                     [(ngModel)]="search_name" name="search_name"  area-describedby="helpId">
+              </div>
+            </div>
+            <!-- section title -->
+          </div>
+        </div>
+        <!-- row -->
+        <br />
+<!--        new card -->
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let i of formation  | paginate: { itemsPerPage: 8, currentPage: p  }| recherche:search_name ; let index = index">
+            <div class="card text-white card-has-bg click-col" style="background-image:url('../../../../../assets/images_courzelo_classroom/course/cu-5.jpg');">
+              <img class="card-img d-none" src="../../../../../assets/images_courzelo_classroom/course/cu-5.jpg" alt="course cover">
+              <div class="card-img-overlay d-flex flex-column">
+                <div class="card-body">
+                  <small class=" text-white  mb-2">{{i.category}}</small>
+                  <h2 class="card-title mt-0 ">
+                    <a class="card-meta" (click)="getIdFormation(i.idFormation)">{{ i.coursename }}</a>
+                  </h2>
+                  <small><i class="far fa-clock"></i> {{ i.date | date }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- container -->
+    </section>
+
+    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+
+
+

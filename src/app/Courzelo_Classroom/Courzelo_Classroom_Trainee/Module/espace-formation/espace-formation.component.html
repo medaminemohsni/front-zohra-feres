@@ -1,0 +1,96 @@
+<!--<div>-->
+<!--  <form>-->
+<!--    <input type="text" class="search-hover" name="" placeholder="search here..."-->
+<!--           [(ngModel)]="search_name" name="search_name" id="" area-describedby="helpId">-->
+<!--  </form>-->
+<!--</div>-->
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="example-sidenav-content">
+  <section id="course-part" class="pt-50 pb-50">
+    <div class="container">
+      <div class="row" style="margin-bottom: -20px">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h2 style="font-size: 30px">Courses</h2>
+          </div>
+          <div class="form-group col-xs-6">
+            <label class="control-label">
+              <code>.inner-addon.<i>right</i>-addon</code>
+            </label>
+            <div class="inner-addon left-addon">
+              <i class="glyphicon glyphicon-search"></i>
+              <input type="text" class="search-hover" name="" placeholder="search here..."
+                     [(ngModel)]="search_name" name="search_name"  area-describedby="helpId">
+            </div>
+          </div>
+          <!-- section title -->
+        </div>
+      </div>
+      <!-- row -->
+      <br />
+
+<!--      new card here-->
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let i of formation | paginate: { itemsPerPage: 8, currentPage: p  }| recherche:search_name ; let index = index">
+          <div class="card text-white card-has-bg click-col" style="background-image:url('../../../../../assets/images_courzelo_classroom/course/cu-5.jpg');">
+            <img class="card-img d-none" src="../../../../../assets/images_courzelo_classroom/course/cu-5.jpg" alt="course cover">
+            <div class="card-img-overlay d-flex flex-column">
+              <div class="card-body">
+                <small class=" text-white  mb-2">{{i.category}}</small>
+                <h2 class="card-title mt-0 ">
+                  <a class="card-meta" [routerLink]="['/sidebar/espaceformation/classworktrainee']"
+                     (click)="getIdFormation(i.idFormation)">{{ i.coursename }}</a>
+                </h2>
+                <small><i class="far fa-clock"></i> {{ i.date | date }}</small>
+              </div>
+              <div class="card-footer">
+                <div class="media">
+                  <img class="mr-3 rounded-circle" src="../../../../../assets/images_courzelo_classroom/instructor/i-1.jpg" alt="instructor image" style="max-width:50px">
+                  <div class="media-body">
+                    <h6 class="my-0 text-white d-block">{{ i.instructorname }}</h6>
+                    <small>Director of UI/UX</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--      end of new card-->
+
+<!--      <div class="container">-->
+<!--        <div class="row" style="margin-left: -90px; margin-right: -99px">-->
+<!--          <div class="col-lg-3 col-sm-6" *ngFor="let i of formation | paginate: { itemsPerPage: 8, currentPage: p  }| recherche:search_name ; let index = index">-->
+<!--            <div class="card hovercard">-->
+<!--              <div class="cardheader">-->
+<!--                <div class="sd">-->
+<!--                  <a [routerLink]="['/sidebar/espaceformation/classworktrainee']" (click)="getIdFormation(i.idFormation)">-->
+<!--                    <h4 class="titre">{{ i.coursename }}</h4></a-->
+<!--                  >-->
+
+<!--                  <h5 class="sousTitre">{{ i.instructorname }}</h5>-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              <div class="avatar">-->
+<!--                <img-->
+<!--                  alt=""-->
+<!--                  src="../../../../../assets/images_courzelo_classroom/instructor/i-1.jpg"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <!-- course slied -->
+    </div>
+    <!-- container -->
+  </section>
+  <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+

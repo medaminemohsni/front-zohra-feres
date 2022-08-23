@@ -1,0 +1,56 @@
+
+<div id="preloader" class="table-responsive">
+    <div class="section-title mt-50">
+      <h3>Quiz management</h3>
+    </div>
+    <!-- section title -->
+  
+    <div class="search-bar col-lg-8 col-md-6 col-sm-4 col-xs-1">
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="doFilter($any($event.target).value)"
+          type="text"
+          placeholder="Search" class="search-barr"
+        />
+        <button mat-icon-button><mat-icon>search</mat-icon></button>
+      </mat-form-field>
+    </div>
+  
+    <div class="add-btn">
+      <button mat-icon-button routerLink="/trainer/AddQuiz">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+  
+    <table id="preloader" mat-table [dataSource]="dataSource" matSort (matSortChange)="SortChange($event)" class="mat-elevation-z9">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let quiz">
+          <span *ngIf="quiz.title != null"> {{ quiz.title }}</span>
+          <span *ngIf="quiz.title === null || quiz.title == ''">----</span>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Link">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Link</th>
+        <td mat-cell *matCellDef="let quiz">
+          <span>
+            <a  (click)="view(quiz.id)">View test</a>
+          </span>
+        </td>
+      </ng-container>
+  
+    
+  
+   
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+     
+
+    </table>
+  
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[3, 10, 25, 50]" ></mat-paginator>
+  </div>
